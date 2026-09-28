@@ -1,0 +1,33 @@
+SUPLEMENTAAI V38 - 99FOOD TOKEN AUTOMATICO - SEM ALTERAR O SUPABASE
+
+A pasta dist gerada por npm run build e um pacote Netlify completo.
+Ela contem:
+- site/ -> frontend pronto
+- netlify/functions/ifood.mjs -> integracao iFood
+- netlify/functions/food99.mjs -> chamadas da API 99Food
+- netlify/functions/food99-webhook.mjs -> webhook 99Food
+- demais Netlify Functions ja existentes
+- netlify.toml -> configuracao automatica do Netlify
+- package.json -> dependencias necessarias, inclusive Netlify Blobs
+
+PUBLICACAO
+1. Rode npm run build.
+2. Publique O CONTEUDO DA PASTA dist exatamente como nas versoes anteriores.
+3. Nao rode supabase db push.
+4. Nao publique Supabase Edge Functions.
+5. Nao precisa abrir/configurar o Supabase para a 99Food.
+
+99FOOD
+- Para compatibilidade com o banco ja existente, a 99Food reutiliza internamente o slot legado 99delivery.
+- A interface mostra esse slot como 99Food.
+- APP ID, Secret, Shop ID e AppShopID usam apenas os campos ja existentes.
+- O Auth Token NAO precisa ser colado manualmente: a Netlify Function usa auth/get e auth/refresh automaticamente.
+- O upload de menu e feito pela Netlify Function food99.mjs.
+- O webhook e uma Netlify Function e sera publicado junto com a dist.
+- Depois do deploy, copie em Integracoes > 99Food a URL exibida e cadastre/atualize o webhook no portal 99Food.
+- A URL tera o formato https://SEU-SITE.netlify.app/.netlify/functions/food99-webhook
+
+IMPORTANTE
+- Nao foi criada migration nova para a 99Food nesta versao.
+- Nao ha dependencia de Supabase Edge Function para a 99Food.
+- O iFood permanece sem alteracoes funcionais nesta versao.
